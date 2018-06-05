@@ -41,7 +41,7 @@ function observer(value) {
  * 有些数据没有绑定到视图，他改变数据的时候就不应该渲染视图
  * 当一个数据改变的时候，需要让使用到这个数据的实例进行视图更新*/
 
-//订阅者Dep，存放Watcher观察者对象
+//订阅者Dep，主要作用来存放Watcher观察者对象
 //在Dep对象的sub中添加watcher的订阅，通知watcher进行更新
 class Dep {
     constructor() {
@@ -66,6 +66,7 @@ class Dep {
 class Watcher {
     constructor() {
         //在new一个Watcher对象的时候，将该对象的值赋给Dep.target，在get中会用到
+        //一个Watcher在多个Dep中的场景
         Dep.target = this;
     }
 
